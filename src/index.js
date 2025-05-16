@@ -3,8 +3,7 @@
 /**
  * Module dependencies.
  */
-
-const lru = require('lru-cache')
+const { LRUCache } = require('lru-cache')
 
 /**
  * Module constants.
@@ -20,9 +19,9 @@ module.exports = class MemoryStore {
    * @param {Object} options
    * @api public
    */
-
-  constructor(options = {}) {
-    this.client = lru(options.count || 100)
+  constructor(options = {}, ...args) {
+    const maxEntries = options.count || 100
+    this.client = new LRUCache({ max: maxEntries })
   }
 
   /**
@@ -37,7 +36,7 @@ module.exports = class MemoryStore {
     let val, data = this.client.get(key)
     if (!data) return fn(null, data)
     if (data.expire !== -1 && data.expire < Date.now()) {
-      this.client.del(key)
+      this.client.delete(key)
       return setImmediate(fn)
     }
     try {
@@ -68,9 +67,9 @@ module.exports = class MemoryStore {
 
     if (typeof val === 'undefined') return fn()
 
-    const expire = -1 === ttl
-        ? -1
-        : Date.now() + (ttl || 60) * 1000
+    const expire = ttl === -1
+      ? -1
+      : Date.now() + (ttl || 60) * 1000
 
     try {
       data = {
@@ -106,7 +105,7 @@ module.exports = class MemoryStore {
    */
 
   clear(fn = noop) {
-    this.client.reset()
+    this.client.clear()
     setImmediate(fn)
   }
 
@@ -119,10 +118,13 @@ module.exports = class MemoryStore {
 
   getAll(fn = noop) {
     const entries = []
-    const keys = this.client.keys()
 
-    this.client.forEach((value, key, cache) => {
-      entries.push({ key: key, data: JSON.parse(value.value) })
+    this.client.forEach((value, key) => {
+      try {
+        entries.push({ key: key, data: JSON.parse(value.value) })
+      } catch (err) {
+        // Skip corrupted or invalid JSON
+      }
     })
 
     fn(null, entries)

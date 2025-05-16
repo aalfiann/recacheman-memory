@@ -1,16 +1,11 @@
-> This is a fork version of [cacheman-memory](https://github.com/cayasso/cacheman-memory) with following differences :
-- Minimum NodeJS 10
-- Removed old libraries
-- Fixing all vulnerables
-- Up to date
+> This is a fork version of [cacheman-memory](https://github.com/cayasso/cacheman-memory)
 
 # recacheman-memory
 
 [![NPM](https://nodei.co/npm/recacheman-memory.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/recacheman-memory/)  
   
 [![npm version](https://img.shields.io/npm/v/recacheman-memory.svg?style=flat-square)](https://www.npmjs.org/package/recacheman-memory)
-[![Build Status](https://travis-ci.com/aalfiann/recacheman-memory.svg?branch=master)](https://travis-ci.com/aalfiann/recacheman-memory)
-[![Coverage Status](https://coveralls.io/repos/github/aalfiann/recacheman-memory/badge.svg?branch=master)](https://coveralls.io/github/aalfiann/recacheman-memory?branch=master)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/aalfiann/recacheman-memory/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/aalfiann/recacheman-memory/tree/master)
 [![Known Vulnerabilities](https://snyk.io//test/github/aalfiann/recacheman-memory/badge.svg?targetFile=package.json)](https://snyk.io//test/github/aalfiann/recacheman-memory?targetFile=package.json)
 ![License](https://img.shields.io/npm/l/recacheman-memory)
 ![NPM download/month](https://img.shields.io/npm/dm/recacheman-memory.svg)
@@ -141,7 +136,8 @@ $ make test
 
 (The MIT License)
 
-Copyright (c) 2013 Jonathan Brumley &lt;cayasso@gmail.com&gt;
+Copyright (c) 2013 Jonathan Brumley &lt;cayasso@gmail.com&gt;,  
+M Abd Aziz Alfian &lt;aalfiann@gmail.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
