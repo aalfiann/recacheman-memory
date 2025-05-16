@@ -13,6 +13,11 @@
 
 In-memory caching library for Node.JS and also cache engine for [recacheman](https://github.com/aalfiann/recacheman).
 
+| Version | Node.JS |
+|---|---|
+| 1.x | 10, 12, 14, 16, 18, 20 |
+| 2.x | 20, 22 |
+
 ## Instalation
 
 ``` bash
